@@ -16,7 +16,7 @@ public class EmployeeController {
     private EmployeeRepository employeeRepository;
 
     @GetMapping("/all")
-    Iterable<Employee> getAllUsers() {
+    public Iterable<Employee> getAllUsers() {
         return employeeRepository.findAll();
     }
 
