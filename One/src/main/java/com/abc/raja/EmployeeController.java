@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/employee")
-//@CrossOrigin(origins = "http://localhost:4200")
 public class EmployeeController {
 
     @Autowired
@@ -41,10 +41,17 @@ public class EmployeeController {
         employeeRepository.deleteById(id);
     }
 
-    /*@PutMapping("/{id}")
-    public Employee updateEmployee(@PathVariable Integer id) {
+    @PutMapping("/{id}")
+    public Employee updateEmployee(@PathVariable Integer id, @RequestBody Employee employee) {
+        Employee existingEmp = employeeRepository.findById(id).orElseThrow(()->new EmployeeNotFoundException(id));
 
-    }*/
+        existingEmp.setName(employee.getName());
+        existingEmp.setJoiningDate(employee.getJoiningDate());
+        existingEmp.setSalary(employee.getSalary());
+        existingEmp.setSsn(employee.getSsn());
+
+        return employeeRepository.save(existingEmp);
+    }
 
 
 }
