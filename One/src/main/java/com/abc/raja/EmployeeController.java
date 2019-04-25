@@ -5,6 +5,7 @@ import com.abc.raja.repo.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -50,6 +51,9 @@ public class EmployeeController {
 
         return employeeRepository.save(existingEmp);
     }
+
+    //@PatchMapping("")
+    // Have to explore how to use this patch mapping.....
 
 
 }
