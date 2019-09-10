@@ -41,7 +41,7 @@ public class EmployeeController {
 
     @PutMapping("/{id}")
     public Employee updateEmployee(@PathVariable Integer id, @RequestBody Employee employee) {
-        Employee existingEmp = employeeRepository.findById(id).orElseThrow(()->new EmployeeNotFoundException(id));
+        Employee existingEmp = employeeRepository.findById(id).orElseThrow(() -> new EmployeeNotFoundException(id));
 
         existingEmp.setName(employee.getName());
         existingEmp.setJoiningDate(employee.getJoiningDate());
